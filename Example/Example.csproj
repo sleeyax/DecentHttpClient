@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{65C55764-A8BF-4B76-B291-913D799124F3}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DecentHttpClient</RootNamespace>
-    <AssemblyName>DecentHttpClient</AssemblyName>
+    <ProjectGuid>{C52EA617-E00C-409C-B8E2-D6483923DE3C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Example</RootNamespace>
+    <AssemblyName>Example</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -36,7 +38,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,26 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="exceptions\HttpResponseParseFailure.cs" />
-    <Compile Include="exceptions\ProtocolVersionNotSupported.cs" />
-    <Compile Include="HttpHeaders.cs" />
-    <Compile Include="HttpClient.cs" />
-    <Compile Include="HttpClientSettings.cs" />
-    <Compile Include="HttpResponse.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BouncyTcpClient.cs" />
-    <Compile Include="security\CustomClient.cs" />
-    <Compile Include="security\DefaultTlsAuthentication.cs" />
-    <Compile Include="security\DefaultTlsClient.cs" />
-    <Compile Include="security\Dtls10Client.cs" />
-    <Compile Include="security\Dtls12Client.cs" />
-    <Compile Include="security\Ssl3Client.cs" />
-    <Compile Include="security\Tls10Client.cs" />
-    <Compile Include="security\Tls11Client.cs" />
-    <Compile Include="security\Tls12Client.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DecentHttpClient\DecentHttpClient.csproj">
+      <Project>{65c55764-a8bf-4b76-b291-913d799124f3}</Project>
+      <Name>DecentHttpClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
