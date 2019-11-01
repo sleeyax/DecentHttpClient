@@ -29,10 +29,10 @@ namespace DecentHttpClient.Tests
         }
 
         [TestMethod]
-        public void Response_CanBeEmpty()
+        public void Response_BodyCanBeNull()
         {
             var response = _httpClient.Get(new Uri("https://httpbin.org/status/200"));
-            Assert.AreEqual(response.Body, "");
+            Assert.AreEqual(null, response.Body);
         }
 
         [TestMethod]
