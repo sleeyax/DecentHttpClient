@@ -61,7 +61,7 @@ namespace DecentHttpClient
             // append data in case of POST or similar
             if (data != null)
                 sb.Append(data);
-            Console.WriteLine(sb.ToString());
+            // Console.WriteLine(sb.ToString());
 
             var requestBytes = Encoding.ASCII.GetBytes(sb.ToString());
 
