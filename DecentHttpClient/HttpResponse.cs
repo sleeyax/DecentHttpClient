@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq.Expressions;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using DecentHttpClient.exceptions;
@@ -48,21 +49,18 @@ namespace DecentHttpClient
                         {
                             ParseBody(line);
                         }
-
-                        // hacky workaround for weird 'forever stuck' in loop bug that occurs sometimes
-                        // TODO: find decent solution
-                        if (sr.Peek() == -1 && line != "")
-                            break;
-                        if (sr.Peek() == -1 && line == "")
-                            break;
                     }
                 }
             }
+            // NOTE: this is a hacky work-around for the '.Read() stuck for no reason whatsoever, fuck it' bug
+            catch (SocketException) {}
+            catch(IOException) {}
+            // --
             catch (Exception ex)
             {
                 throw new HttpResponseParseFailure(ex);
             }
-            
+
         }
 
         /// <summary>

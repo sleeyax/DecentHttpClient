@@ -27,6 +27,7 @@ namespace DecentHttpClient
             _port = port;
             Console.WriteLine($"Connecting to {_host}:{_port}...");
             _tcpClient = new TcpClient(host, port);
+            _tcpClient.ReceiveTimeout = 3000;
         }
 
         /// <summary>
