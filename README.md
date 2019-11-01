@@ -109,11 +109,15 @@ namespace `DecentHttpClient`.
 Supports basic http methods: `Get, Post, Put, Delete, Patch, Head`.
 
 NOTE #1: at the moment the methods above only support HTTPS requests.
+
 NOTE #2: none of the parent `WebRequest` class methods are implemented/overriden yet.
 
 ### `HttpResponse : WebResponse`
 #### Properties
 `Headers` - response headers in `key:value` pairs
+
 `ProtocolVersion` - response HTTP protocol version
+
 `StatusCode` - response status code
+
 `Body` - response body
