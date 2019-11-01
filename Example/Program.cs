@@ -31,9 +31,11 @@ namespace Example
 
         private static void TestClient()
         {
-            _httpClient = new HttpClient();
-            _httpClient.Headers = GetHttpHeaders();
-            _httpClient.Settings.TlsClient = new Tls12Client();
+            _httpClient = new HttpClient
+            {
+                Headers = GetHttpHeaders(),
+                Settings = {TlsClient = new DecentHttpClient.security.DefaultTlsClient()}
+            };
 
             var response = _httpClient.Get(new Uri("https://sleeyax.com"));
 
