@@ -39,7 +39,7 @@ namespace DecentHttpClient
         /// <param name="client"></param>
         /// <param name="headers"></param>
         /// <returns>Response Stream</returns>
-        public Stream SendHttp(string method, string resource, string httpVersion, TlsClient client, HttpHeaders headers)
+        public Stream SendHttp(string method, string resource, string data, string httpVersion, TlsClient client, HttpHeaders headers)
         {
             TlsClientProtocol protocol = new TlsClientProtocol(_tcpClient.GetStream(), new SecureRandom());
             try
@@ -57,7 +57,11 @@ namespace DecentHttpClient
             if (!headers.Contains("host"))
                 headers.Add("Host", _host);
             sb.AppendLine(headers.ToString());
-            // Console.WriteLine(sb.ToString());
+
+            // append data in case of POST or similar
+            if (data != null)
+                sb.Append(data);
+            Console.WriteLine(sb.ToString());
 
             var requestBytes = Encoding.ASCII.GetBytes(sb.ToString());
 
