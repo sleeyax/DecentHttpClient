@@ -50,9 +50,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestCipherSuites.cs" />
+    <Compile Include="TestHttpMethods.cs" />
     <Compile Include="TestHttpResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestSecurityProtocols.cs" />

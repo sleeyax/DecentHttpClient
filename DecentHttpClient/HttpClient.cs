@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Net;
 
 namespace DecentHttpClient
@@ -22,22 +23,48 @@ namespace DecentHttpClient
             return Send(uri, "GET");
         }
 
+        public HttpResponse Post(Uri uri, string data)
+        {
+            return Send(uri, "POST", data);
+        }
+
+        public HttpResponse Put(Uri uri, string data)
+        {
+            return Send(uri, "PUT", data);
+        }
+
+        public HttpResponse Delete(Uri uri, string data)
+        {
+            return Send(uri, "DELETE", data);
+        }
+
+        public HttpResponse Patch(Uri uri, string data)
+        {
+            return Send(uri, "PATCH", data);
+        }
+
+        public HttpResponse Head(Uri uri)
+        {
+            return Send(uri, "HEAD");
+        }
+
         public string GetBody(Uri uri)
         {
             return Get(uri).Body;
         }
 
         /// <summary>
-        /// Send a HTTP request to specified URI, using specified HTTP method
+        /// Send a HTTP request
         /// </summary>
-        /// <param name="uri"></param>
-        /// <param name="method"></param>
+        /// <param name="uri">target host</param>
+        /// <param name="method">http method</param>
+        /// <param name="data">request body content</param>
         /// <returns></returns>
-        private HttpResponse Send(Uri uri, string method)
+        private HttpResponse Send(Uri uri, string method, string data = null)
         {
             _bouncyTcpClient.Connect(uri.Host, uri.Port);
 
-            var responseStream = _bouncyTcpClient.SendHttp(method.ToUpper(), uri.PathAndQuery, Settings.HttpProtocolVersion, Settings.TlsClient, Headers);
+            var responseStream = _bouncyTcpClient.SendHttp(method.ToUpper(), uri.PathAndQuery, data, Settings.HttpProtocolVersion, Settings.TlsClient, Headers);
             using (responseStream)
             {
                 HttpResponse httpResponse = new HttpResponse(responseStream);
@@ -47,6 +74,6 @@ namespace DecentHttpClient
             }
         }
 
-        private bool IsEncrypted(Uri uri) => uri.Scheme == "https";
+       // private bool IsEncrypted(Uri uri) => uri.Scheme == "https";
     }
 }
